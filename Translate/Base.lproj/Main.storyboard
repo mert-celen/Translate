@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,56 +19,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="&lt;Text to Translate&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dii-Vg-90N">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dii-Vg-90N">
+                                <color key="backgroundColor" red="0.9529411793" green="0.68627452850000004" blue="0.13333334029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="jFC-ba-A6J"/>
+                                    <constraint firstAttribute="height" constant="80" id="W9k-tF-8xM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="&lt;Text to Translate&gt;">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" metaFont="system" size="23"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.6000000000000001" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uj1-2e-HtE"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tk9-7M-DEK">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9529411793" green="0.68627452850000004" blue="0.13333334029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="113" id="nTG-Fq-dep"/>
+                                    <constraint firstAttribute="height" constant="113" id="jR3-yG-YvI"/>
                                 </constraints>
-                                <state key="normal" title="Translate"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+                                <state key="normal" title="Translate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="translate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hmF-qn-cbf"/>
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1u-M2-9zM" userLabel="Text Language">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="141" id="fEI-FS-ye1"/>
+                                    <constraint firstAttribute="height" constant="141" id="MMi-JO-x7z"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="1Fh-Ea-KlT"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ztq-if-zC5"/>
                                 </connections>
                             </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="&lt;Translated Text&gt;" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LaV-KV-DTJ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LaV-KV-DTJ">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="cJi-cJ-orR"/>
+                                    <constraint firstAttribute="height" constant="128" id="HRW-I5-tVB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="leading" secondItem="W1u-M2-9zM" secondAttribute="leading" id="29F-uE-lNF"/>
-                            <constraint firstItem="W1u-M2-9zM" firstAttribute="top" secondItem="dii-Vg-90N" secondAttribute="bottom" constant="8" symbolic="YES" id="5aI-i1-I2d"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Akk-1t-UER"/>
-                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="trailing" secondItem="Tk9-7M-DEK" secondAttribute="trailing" id="Gof-O4-KJd"/>
-                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="top" secondItem="W1u-M2-9zM" secondAttribute="bottom" constant="8" symbolic="YES" id="IW4-J7-p34"/>
-                            <constraint firstItem="W1u-M2-9zM" firstAttribute="trailing" secondItem="LaV-KV-DTJ" secondAttribute="trailing" id="JT4-bF-Gpz"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Tk9-7M-DEK" secondAttribute="bottom" constant="8" symbolic="YES" id="PId-aY-Ufe"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="trailing" secondItem="W1u-M2-9zM" secondAttribute="trailing" id="RDL-2a-mGB"/>
-                            <constraint firstItem="W1u-M2-9zM" firstAttribute="leading" secondItem="LaV-KV-DTJ" secondAttribute="leading" id="dab-Oq-sQw"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ezi-RL-vBx"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="lPN-Pw-fUx"/>
-                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="leading" secondItem="Tk9-7M-DEK" secondAttribute="leading" id="u4i-HD-B1X"/>
+                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="leading" secondItem="Tk9-7M-DEK" secondAttribute="leading" id="5Ud-j7-8nY"/>
+                            <constraint firstItem="W1u-M2-9zM" firstAttribute="leading" secondItem="LaV-KV-DTJ" secondAttribute="leading" id="8Ek-gX-TzQ"/>
+                            <constraint firstItem="dii-Vg-90N" firstAttribute="leading" secondItem="W1u-M2-9zM" secondAttribute="leading" id="9lw-pC-Lgr"/>
+                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="top" secondItem="W1u-M2-9zM" secondAttribute="bottom" constant="8" symbolic="YES" id="Gk3-y6-Q3r"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Tk9-7M-DEK" secondAttribute="bottom" constant="8" symbolic="YES" id="Gyn-oZ-UYt"/>
+                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="trailing" secondItem="Tk9-7M-DEK" secondAttribute="trailing" id="JdE-DT-VLO"/>
+                            <constraint firstItem="dii-Vg-90N" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Jli-Za-e99"/>
+                            <constraint firstItem="dii-Vg-90N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="LON-rZ-npb"/>
+                            <constraint firstItem="dii-Vg-90N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Mcb-Sd-WNh"/>
+                            <constraint firstItem="W1u-M2-9zM" firstAttribute="top" secondItem="dii-Vg-90N" secondAttribute="bottom" constant="56" id="NJ7-r3-axJ"/>
+                            <constraint firstItem="dii-Vg-90N" firstAttribute="trailing" secondItem="W1u-M2-9zM" secondAttribute="trailing" id="NUH-uc-aQJ"/>
+                            <constraint firstItem="W1u-M2-9zM" firstAttribute="trailing" secondItem="LaV-KV-DTJ" secondAttribute="trailing" id="VwP-Yh-BbF"/>
                         </constraints>
                     </view>
                     <connections>

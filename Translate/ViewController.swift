@@ -14,14 +14,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
-
-
+    
     @IBOutlet weak var input: UITextView!
     @IBOutlet weak var output: UITextView!
     @IBOutlet weak var inputLanguage: UIPickerView!
     @IBOutlet weak var translateButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.hideKeyboardWhenTappedAround()
         self.inputLanguage.dataSource = self;
         self.inputLanguage.delegate = self;
@@ -40,23 +40,44 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return languagesText.count
     }
     @IBAction func translate(_ sender: AnyObject) {
-        let frame = CGRect(x: 300, y: 300, width: 500, height: 500)
-        let indicator = NVActivityIndicatorView(frame:frame,type:NVActivityIndicatorType.pacman)
-        indicator.center = view.center
-        view.addSubview(indicator)
-        indicator.startAnimating()
+        let (source,target) = getLanguages()
+        //Check if input language is same with desired one
+        if(source == target){
+            self.output.text = "Select different language to translate!"
+        }else if(self.input.text == "<Text to Translate>") || self.input.text == ""{
+            self.output.text = "Please enter something"
+        }else{
+            
+            //Create indicator
+            
+            let screenSize: CGRect = UIScreen.main.bounds
+            let frame = CGRect(x: screenSize.width/2, y: screenSize.height/2, width: 250, height: 250)
+            let indicator = NVActivityIndicatorView(frame:frame,type:NVActivityIndicatorType.pacman,color: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+            indicator.center = view.center
+            view.addSubview(indicator)
 
-        let (source,target) = getLanguagas()
-        let str = input.text
-        let escapedStr = str?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        print("Requesting translation for '\(str!)'")
-        let langStr = (source + "|" + target).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        var result = "Network Error"
-        var request = URLRequest(url: URL(string: "http://api.mymemory.translated.net/get?q="+escapedStr!+"&langpair="+langStr!)!)
-        request.httpMethod = "GET"
-        let session = URLSession.shared
-        session.dataTask(with: request) {data, response, err in
-
+            //Start it
+            
+            indicator.startAnimating()
+            
+            //Get text from input
+            
+            let str = input.text
+            
+            //Make it proper for request
+            
+            let escapedStr = str?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+            print("Requesting translation for '\(str!)'")
+            let langStr = (source + "|" + target).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+            
+            //Default result in case of network error.
+            
+            var result = "Network Error"
+            //Create Request
+            var request = URLRequest(url: URL(string: "http://api.mymemory.translated.net/get?q="+escapedStr!+"&langpair="+langStr!)!)
+            request.httpMethod = "GET"
+            let session = URLSession.shared
+            session.dataTask(with: request) {data, response, err in
             if let httpResponse = response as? HTTPURLResponse {
                 if(httpResponse.statusCode == 200){
                     print("Received data, now parsing.")
@@ -65,18 +86,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                         let responseData: NSDictionary = jsonDict.object(forKey: "responseData") as! NSDictionary
                         result = responseData.object(forKey: "translatedText") as! String
                     }
-                }else{
-                    print("Cannot connect to server or server is down")
                 }
             }
             print(result)
-            
             DispatchQueue.main.async {
                 indicator.stopAnimating()
                 self.output.text = result
             }
         }.resume()
-        
+        }
     }
     
     
@@ -84,7 +102,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var languagesCode = ["TR","EN","FR","IT","DE","RU"]
     
-    func getLanguagas() -> (String,String){
+    func getLanguages() -> (String,String){
         let sourceLang = languagesCode[inputLanguage.selectedRow(inComponent: 0)]
         let targetLang = languagesCode[inputLanguage.selectedRow(inComponent: 1)]
         return(sourceLang,targetLang)
