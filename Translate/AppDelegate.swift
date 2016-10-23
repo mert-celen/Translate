@@ -12,13 +12,30 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var shortcut = 0;
+    var shouldExecute = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        if let options = launchOptions,
+            let shortcutItem = options[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            if(shortcutItem.type == "com.mert.translate.trToEn"){
+                shortcut = 1
+            }else{
+                shortcut = 2
+            }
+            shouldExecute = true
+        }
         return true
     }
+    
+    func shouldExecuteAction() -> Bool{
+        return shouldExecute;
+    }
 
+    func getShortcut() -> Int{
+        return self.shortcut;
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

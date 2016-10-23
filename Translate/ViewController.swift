@@ -19,12 +19,28 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var output: UITextView!
     @IBOutlet weak var inputLanguage: UIPickerView!
     @IBOutlet weak var translateButton: UIButton!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if(self.appDelegate.shouldExecuteAction()){
+            setActionStuff()
+        }
         self.hideKeyboardWhenTappedAround()
         self.inputLanguage.dataSource = self;
         self.inputLanguage.delegate = self;
+    }
+    
+    func setActionStuff(){
+        let shortcut = self.appDelegate.getShortcut()
+        if(shortcut != 0){
+            if(shortcut == 1){
+                self.inputLanguage.selectRow(1, inComponent: 1, animated: true)
+            }else{
+                self.inputLanguage.selectRow(1, inComponent: 0, animated: true)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,6 +55,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return languagesText.count
     }
+    
     @IBAction func translate(_ sender: AnyObject) {
         let (source,target) = getLanguages()
         //Check if input language is same with desired one

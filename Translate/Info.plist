@@ -60,5 +60,20 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.mert.translate.trToEn</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Turkish to English</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.mert.translate.enToTr</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>English to Turkish</string>
+		</dict>
+	</array>
 </dict>
 </plist>
