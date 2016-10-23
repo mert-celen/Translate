@@ -9,7 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextViewDelegate{
     @available(iOS 2.0, *)
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
@@ -41,6 +41,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 self.inputLanguage.selectRow(1, inComponent: 0, animated: true)
             }
         }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        input.text = ""
     }
     
     override func didReceiveMemoryWarning() {
