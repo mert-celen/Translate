@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,82 +18,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dii-Vg-90N">
-                                <color key="backgroundColor" red="0.9529411793" green="0.68627452850000004" blue="0.13333334029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="W9k-tF-8xM"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="&lt;Text to Translate&gt;">
-                                        <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" metaFont="system" size="23"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.6000000000000001" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uj1-2e-HtE"/>
-                                </connections>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tk9-7M-DEK">
-                                <color key="backgroundColor" red="0.9529411793" green="0.68627452850000004" blue="0.13333334029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="113" id="jR3-yG-YvI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
-                                <state key="normal" title="Translate">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="translate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hmF-qn-cbf"/>
-                                </connections>
-                            </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1u-M2-9zM" userLabel="Text Language">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="141" id="MMi-JO-x7z"/>
-                                </constraints>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="1Fh-Ea-KlT"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ztq-if-zC5"/>
                                 </connections>
                             </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LaV-KV-DTJ">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <searchBar contentMode="redraw" placeholder="Enter text to translate." translatesAutoresizingMaskIntoConstraints="NO" id="yUz-gr-SSI">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="HRW-I5-tVB"/>
+                                    <constraint firstAttribute="height" constant="44" id="0xz-YA-9ey"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rsU-NB-HB5"/>
+                                </connections>
+                            </searchBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LaV-KV-DTJ">
+                                <color key="backgroundColor" red="0.9529411793" green="0.68627452850000004" blue="0.13333334029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="477" id="PuL-Ud-JeW"/>
+                                </constraints>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="leading" secondItem="Tk9-7M-DEK" secondAttribute="leading" id="5Ud-j7-8nY"/>
-                            <constraint firstItem="W1u-M2-9zM" firstAttribute="leading" secondItem="LaV-KV-DTJ" secondAttribute="leading" id="8Ek-gX-TzQ"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="leading" secondItem="W1u-M2-9zM" secondAttribute="leading" id="9lw-pC-Lgr"/>
-                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="top" secondItem="W1u-M2-9zM" secondAttribute="bottom" constant="8" symbolic="YES" id="Gk3-y6-Q3r"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Tk9-7M-DEK" secondAttribute="bottom" constant="8" symbolic="YES" id="Gyn-oZ-UYt"/>
-                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="trailing" secondItem="Tk9-7M-DEK" secondAttribute="trailing" id="JdE-DT-VLO"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Jli-Za-e99"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="LON-rZ-npb"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Mcb-Sd-WNh"/>
-                            <constraint firstItem="W1u-M2-9zM" firstAttribute="top" secondItem="dii-Vg-90N" secondAttribute="bottom" constant="56" id="NJ7-r3-axJ"/>
-                            <constraint firstItem="dii-Vg-90N" firstAttribute="trailing" secondItem="W1u-M2-9zM" secondAttribute="trailing" id="NUH-uc-aQJ"/>
-                            <constraint firstItem="W1u-M2-9zM" firstAttribute="trailing" secondItem="LaV-KV-DTJ" secondAttribute="trailing" id="VwP-Yh-BbF"/>
+                            <constraint firstItem="LaV-KV-DTJ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="307-oZ-vNe"/>
+                            <constraint firstItem="yUz-gr-SSI" firstAttribute="leading" secondItem="W1u-M2-9zM" secondAttribute="leading" id="HhD-gP-vC8"/>
+                            <constraint firstItem="yUz-gr-SSI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KO2-IW-1av"/>
+                            <constraint firstItem="yUz-gr-SSI" firstAttribute="trailing" secondItem="W1u-M2-9zM" secondAttribute="trailing" id="Llq-FP-3FI"/>
+                            <constraint firstItem="yUz-gr-SSI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="OaU-FZ-kex"/>
+                            <constraint firstItem="W1u-M2-9zM" firstAttribute="leading" secondItem="LaV-KV-DTJ" secondAttribute="leading" id="YhD-La-1hc"/>
+                            <constraint firstItem="W1u-M2-9zM" firstAttribute="trailing" secondItem="LaV-KV-DTJ" secondAttribute="trailing" id="d2b-22-2Ew"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W1u-M2-9zM" secondAttribute="bottom" constant="475" id="ipU-1c-e87"/>
+                            <constraint firstAttribute="trailing" secondItem="yUz-gr-SSI" secondAttribute="trailing" id="j7W-Fz-Mm1"/>
+                            <constraint firstItem="W1u-M2-9zM" firstAttribute="top" secondItem="yUz-gr-SSI" secondAttribute="bottom" id="nbc-zM-S9R"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="input" destination="dii-Vg-90N" id="Ems-LN-a66"/>
+                        <outlet property="input" destination="yUz-gr-SSI" id="K0s-6O-8Lx"/>
                         <outlet property="inputLanguage" destination="W1u-M2-9zM" id="BfR-EY-EMm"/>
                         <outlet property="output" destination="LaV-KV-DTJ" id="TTE-0S-0Qp"/>
-                        <outlet property="translateButton" destination="Tk9-7M-DEK" id="uTT-hS-RKX"/>
+                        <outlet property="searchDisplayController" destination="XNk-TR-tp9" id="5Qg-mK-1jb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="XNk-TR-tp9">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="6xN-ha-dzK"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="osG-m7-t5g"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="nd4-He-Qpf"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="hZz-ST-ExH"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="332" y="388.15592203898052"/>
         </scene>

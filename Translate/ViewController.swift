@@ -9,18 +9,17 @@
 import UIKit
 import NVActivityIndicatorView
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextViewDelegate{
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UISearchBarDelegate{
     @available(iOS 2.0, *)
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
-    @IBOutlet weak var input: UITextView!
+    @IBOutlet weak var input: UISearchBar!
     @IBOutlet weak var output: UITextView!
     @IBOutlet weak var inputLanguage: UIPickerView!
-    @IBOutlet weak var translateButton: UIButton!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+    var textToSearch = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +42,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        input.text = ""
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.input.text = ""
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        translate()
+        self.dismissKeyboard()
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()    }
@@ -60,7 +65,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return languagesText.count
     }
     
-    @IBAction func translate(_ sender: AnyObject) {
+    func translate() {
         let (source,target) = getLanguages()
         //Check if input language is same with desired one
         if(source == target){
@@ -73,7 +78,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             let screenSize: CGRect = UIScreen.main.bounds
             let frame = CGRect(x: screenSize.width/2, y: screenSize.height/2, width: 250, height: 250)
-            let indicator = NVActivityIndicatorView(frame:frame,type:NVActivityIndicatorType.pacman,color: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+            let indicator = NVActivityIndicatorView(frame:frame,type:NVActivityIndicatorType.pacman,color: #colorLiteral(red: 0.7233663201, green: 0.7233663201, blue: 0.7233663201, alpha: 1))
             indicator.center = view.center
             view.addSubview(indicator)
 
