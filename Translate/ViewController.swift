@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
+//import NVActivityIndicatorView
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UISearchBarDelegate{
     @available(iOS 2.0, *)
@@ -42,15 +42,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.input.text = ""
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         translate()
         self.dismissKeyboard()
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()    }
@@ -73,19 +68,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }else if(self.input.text == "<Text to Translate>") || self.input.text == ""{
             self.output.text = "Please enter something"
         }else{
-            
-            //Create indicator
-            
-            let screenSize: CGRect = UIScreen.main.bounds
-            let frame = CGRect(x: screenSize.width/2, y: screenSize.height/2, width: 250, height: 250)
-            let indicator = NVActivityIndicatorView(frame:frame,type:NVActivityIndicatorType.pacman,color: #colorLiteral(red: 0.7233663201, green: 0.7233663201, blue: 0.7233663201, alpha: 1))
-            indicator.center = view.center
-            view.addSubview(indicator)
 
-            //Start it
-            
-            indicator.startAnimating()
-            
+            //Loading animation
+            EZLoadingActivity.show("Translating...", disableUI: true)
             //Get text from input
             
             let str = input.text
@@ -112,11 +97,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                         let responseData: NSDictionary = jsonDict.object(forKey: "responseData") as! NSDictionary
                         result = responseData.object(forKey: "translatedText") as! String
                     }
+                }else{
+                    EZLoadingActivity.hide(false, animated: true)
                 }
             }
             print(result)
             DispatchQueue.main.async {
-                indicator.stopAnimating()
+                EZLoadingActivity.hide()
                 self.output.text = result
             }
         }.resume()
